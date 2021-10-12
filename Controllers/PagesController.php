@@ -2,8 +2,10 @@
 
 namespace App\Controllers;
 
-class PagesController {
+use App\Core\Controller;
+
+class PagesController extends Controller{
     public function index() {
-        return "Hello from pages controller";
+        $this->view('index');
     }
 }

@@ -2,11 +2,12 @@
 
 namespace App\Controllers;
 
+use App\Core\Controller;
 use App\Core\Request;
 use App\Models\User;
 use App\Core\Response;
 
-class RegisterController {
+class RegisterController extends Controller{
     protected User $user;
 
     public function __construct()
@@ -15,7 +16,7 @@ class RegisterController {
     }
 
     public function index() {
-        require 'Views/register.view.php';
+        $this->view('register');
     }
 
     public function store(Request $request) {
