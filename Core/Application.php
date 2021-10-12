@@ -12,6 +12,7 @@ class Application{
     }
 
     public function run() {
+        Router::loadRoutes('routes.php');
         echo $this->router->resolve();
     }
 }
