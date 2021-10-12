@@ -8,9 +8,11 @@ use Exception;
 class Application{
     protected Router $router;
     protected Request $request;
+    public Database $database;
 
-    public function __construct()
+    public function __construct($config)
     {
+        $this->database = new Database($config['db']);
         $this->request = new Request();
         $this->router = new Router($this->request);
     }
