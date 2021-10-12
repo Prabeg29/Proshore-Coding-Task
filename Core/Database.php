@@ -42,5 +42,7 @@ class Database {
         catch(PDOException $ex){
             echo $ex->getMessage();
         }
+
+        return $stmt;
     }
 }
