@@ -10,9 +10,8 @@ class Application{
     protected Request $request;
     public Database $database;
 
-    public function __construct($config)
+    public function __construct()
     {
-        $this->database = new Database($config['db']);
         $this->request = new Request();
         $this->router = new Router($this->request);
     }

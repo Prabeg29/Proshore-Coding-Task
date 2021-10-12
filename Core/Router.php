@@ -19,6 +19,10 @@ class Router {
         self::$routes['GET'][$uri] = $callback;
     }
 
+    public static function post($uri, $callback) {
+        self::$routes['POST'][$uri] = $callback;
+    }
+
     public static function loadRoutes($routesFile) {
         return require $routesFile;
     }
