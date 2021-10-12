@@ -20,6 +20,8 @@ class RegisterController {
     public function store(Request $request) {
         $userData = $request->getInput();
 
+        $userData['password'] = password_hash($userData['password'], PASSWORD_DEFAULT);
+
         $this->user->createUser([
             'username' => $userData['username'],
             'email' => $userData['email'], 
