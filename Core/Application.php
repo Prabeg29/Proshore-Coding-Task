@@ -2,8 +2,16 @@
 
 namespace App\Core;
 
+use App\Core\Router;
 class Application{
+    protected Router $router;
+
+    public function __construct()
+    {
+        $this->router = new Router();
+    }
+
     public function run() {
-        echo "Hello World";
+        echo $this->router->resolve();
     }
 }
