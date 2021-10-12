@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Core\Request;
 use App\Models\User;
+use App\Core\Response;
 
 class RegisterController {
     protected User $user;
@@ -27,5 +28,7 @@ class RegisterController {
             'email' => $userData['email'], 
             'password' => $userData['password']
         ]);
+
+        Response::redirect('/login');
     }
 }
