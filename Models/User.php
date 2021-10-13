@@ -3,12 +3,11 @@
 namespace App\Models;
 
 use App\Core\Model;
-use PDOException;
 
 class User extends Model{
     protected const TABLE = 'users';
 
-    public function getUserByEmail(array $where, array $column = ['*']) {
+    public function getUserByUsername(array $where, array $column = ['*']) {
         $sql = sprintf(
             "SELECT %s FROM ".self::TABLE." WHERE %s=%s",
             implode('', $column),

@@ -3,6 +3,8 @@
 namespace App\Core;
 
 use App\Core\Router;
+use App\Core\Request;
+use App\Core\Session;
 use Exception;
 
 class Application{
@@ -14,6 +16,7 @@ class Application{
     {
         $this->request = new Request();
         $this->router = new Router($this->request);
+        Session::init();
     }
 
     public function run() {

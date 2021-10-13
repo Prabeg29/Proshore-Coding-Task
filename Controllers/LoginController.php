@@ -6,6 +6,7 @@ use App\Core\Controller;
 use App\Core\Request;
 use App\Models\User;
 use App\Core\Response;
+use App\Core\Session;
 
 class LoginController extends Controller{
     protected User $user;
@@ -24,10 +25,11 @@ class LoginController extends Controller{
     public function login(Request $request) {
         $credentials = $request->getInput();
 
-        $user = $this->user->getUserByEmail(['email' => $credentials['email']]);
+        $user = $this->user->getUserByUsername(['username' => $credentials['username']]);
 
         if($user && password_verify($credentials['password'], $user->password)){
-            Response::redirect('/posts');
+            Session::set('user_id', $user->id);
+            Response::redirect('/');
         }
 
         $this->viewData['error'] = "Invalid Credentials. Please try again";
