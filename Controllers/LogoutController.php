@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
-use App\Core\Request;
 use App\Core\Response;
 use App\Core\Session;
 
