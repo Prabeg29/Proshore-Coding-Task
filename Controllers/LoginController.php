@@ -28,12 +28,17 @@ class LoginController extends Controller{
         $user = $this->user->getUserByUsername(['username' => $credentials['username']]);
 
         if($user && password_verify($credentials['password'], $user->password)){
-            Session::set('user_id', $user->id);
+            $this->saveUserSession($user);
             Response::redirect('/');
         }
 
         $this->viewData['error'] = "Invalid Credentials. Please try again";
 
         $this->view('login', $this->viewData);
+    }
+
+    protected function saveUserSession($user) {
+        Session::set('user_id', $user->id);
+        Session::set('username', $user->username);
     }
 }
