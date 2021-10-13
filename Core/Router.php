@@ -23,13 +23,26 @@ class Router {
         self::$routes['POST'][$uri] = $callback;
     }
 
+    public static function delete($uri, $callback) {
+        self::$routes['DELETE'][$uri] = $callback;
+    }
+
     public static function loadRoutes($routesFile) {
         return require $routesFile;
     }
 
     public function resolve(){
-        $method = $this->request->getMethod();
+        $method = $_REQUEST['_method'] ?? $this->request->getMethod();
         $uri = $this->request->getUri();
+
+        $id = substr(ltrim($uri, '/'), strpos(ltrim($uri, '/'), '/')+1) ?? '';
+        
+        if(is_string($id) && preg_match('/^[0-9]*$/', $id)){
+            $oldUri = substr($uri, 0, strpos(ltrim($uri, '/'), '/') + 2);
+            self::$routes[$method][$uri] = self::$routes[$method][$oldUri];
+            unset(self::$routes[$method][$oldUri]);
+        }
+
         $callback = self::$routes[$method][$uri] ?? false;
 
         if(!$callback){
@@ -38,6 +51,6 @@ class Router {
 
         $callback[0] = new $callback[0];
 
-        return call_user_func($callback, $this->request);
+        return call_user_func($callback, $this->request, $id);
     }
 }

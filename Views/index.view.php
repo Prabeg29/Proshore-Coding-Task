@@ -16,6 +16,11 @@
                 <p>
                     <?= htmlspecialchars($post->body);?>
                 </p>
+                <div class="post-controls">
+                    <a href="posts/<?= $post->id?>">
+                        Read more...
+                    </a>
+                </div>
             </div>
         <?php endforeach;?>
     </div>

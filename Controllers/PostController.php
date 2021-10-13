@@ -43,4 +43,16 @@ class PostController extends Controller {
 
         $this->view('post-form', $this->viewData);
     }
+
+    public function show(Request $request, $id) {
+        $post = $this->post->getPost(['id' => $id]);
+        
+        $this->view('post', $post);
+    }
+
+    public function destroy(Request $request, $id){
+        $this->post->deletePost(['id' => $id]);
+
+        Response::redirect('/');
+    }
 }

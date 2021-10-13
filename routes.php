@@ -18,3 +18,5 @@ Router::get('/users/logout', [LogoutController::class, 'logout']);
 
 Router::get('/posts', [PostController::class, 'index']);
 Router::post('/posts', [PostController::class, 'store']);
+Router::get("/posts/$id", [PostController::class, 'show']);
+Router::delete("/posts/$id", [PostController::class, 'destroy']);
