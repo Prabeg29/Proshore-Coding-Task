@@ -1,14 +1,14 @@
 <?php require 'Views/templates/head.php'?>
 <form action="/users/login" method="post">
     <div>
-        <label for="">Email*: </label>
+        <label for="">Username*: </label>
         <input 
-            type="email" 
-            name="email" 
-            value="<?= $data['input']['email']?>" 
+            type="text" 
+            name="username" 
+            value="<?= $data['input']['username']?>" 
             />
         <div>
-            <?= $data['error']['email']?>
+            <?= $data['error']['username']?>
         </div>
     </div>
     <div>
@@ -22,6 +22,6 @@
             <?= $data['error']['password']?>
         </div>
     </div>
-    <button type="submit">Register</button>
+    <button type="submit">Login</button>
 </form>
 <?php require 'Views/templates/foot.php'?>

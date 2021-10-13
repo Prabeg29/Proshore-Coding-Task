@@ -9,7 +9,7 @@
             |
             <a href="/posts">New Post</a>
             |
-            <?php echo "Welcome ". htmlspecialchars($_SESSION['username']); ?>
+            <?= "Welcome ". htmlspecialchars(\App\Core\Session::get('username')); ?>
             <a href="users/logout">Logout</a>
         <?php else:?>
             <a href="users/login">Login</a>
