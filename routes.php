@@ -4,6 +4,7 @@ use App\Core\Router;
 use App\Controllers\PagesController;
 use App\Controllers\RegisterController;
 use App\Controllers\LoginController;
+use App\Controllers\PostController;
 
 
 Router::get('/', [PagesController::class, 'index']);
