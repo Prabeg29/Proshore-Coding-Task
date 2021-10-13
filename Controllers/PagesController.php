@@ -3,9 +3,15 @@
 namespace App\Controllers;
 
 use App\Core\Controller;
+use App\Core\Session;
+use App\Models\Post;
 
 class PagesController extends Controller{
     public function index() {
-        $this->view('index');
+        $postModel = new Post();
+
+        $post = $postModel->getAllPosts();
+
+        $this->view('index', $post);
     }
 }
