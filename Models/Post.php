@@ -37,4 +37,14 @@ class Post extends Model{
 
         $this->db->run($sql, $postData);
     }
+
+    public function deletePost(array $postData) {
+        $sql = sprintf(
+            "DELETE FROM ".self::TABLE." WHERE %s=%s",
+            implode('', array_keys($postData)),
+            ':'.implode('', array_keys($postData))
+        );
+
+        $this->db->run($sql, $postData);
+    }
 }
