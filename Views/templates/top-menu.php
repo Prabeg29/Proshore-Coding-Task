@@ -5,8 +5,6 @@
         ?>
             <a href="/">Home</a>
             |
-            <a href="list-posts.php">All Posts</a>
-            |
             <a href="/posts">New Post</a>
             |
             <?= "Welcome ". htmlspecialchars(\App\Core\Session::get('username')); ?>

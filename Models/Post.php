@@ -15,6 +15,19 @@ class Post extends Model{
 
         return $stmt->fetchAll(PDO::FETCH_CLASS, self::class);
     }
+
+    public function getPost($postData) {
+        $sql = sprintf(
+            "SELECT * FROM ".self::TABLE." WHERE %s=%s",
+            implode('', array_keys($postData)),
+            ':'.implode('', array_keys($postData))
+        );
+
+        $stmt = $this->db->run($sql, $postData);
+
+        return $stmt->fetchObject(self::class);
+    }
+
     public function createPost(array $postData){
         $sql = sprintf(
             "INSERT INTO ".self::TABLE."(%s) VALUES(%s)",

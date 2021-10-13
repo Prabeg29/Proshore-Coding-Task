@@ -43,4 +43,10 @@ class PostController extends Controller {
 
         $this->view('post-form', $this->viewData);
     }
+
+    public function show(Request $request, $postId) {
+        $post = $this->post->getPost(['id' => $postId]);
+        
+        $this->view('post', $post);
+    }
 }
