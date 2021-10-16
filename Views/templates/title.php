@@ -1,5 +1,5 @@
 <?php require 'top-menu.php'; ?>
 
 <a href="/">
-    <h1>Blog Title</h1>
+    <h1>Blogs</h1>
 </a>
