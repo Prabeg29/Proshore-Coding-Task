@@ -23,6 +23,10 @@ class Router {
         self::$routes['POST'][$uri] = $callback;
     }
 
+    public static function put($uri, $callback) {
+        self::$routes['PUT'][$uri] = $callback;
+    }
+
     public static function delete($uri, $callback) {
         self::$routes['DELETE'][$uri] = $callback;
     }
