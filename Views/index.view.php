@@ -11,10 +11,13 @@
                     <?= htmlspecialchars($post->title); ?>
                 </h3>
                 <div class="meta">
-                    <?= date($post->created_at); ?>
+                    <?= $post->username; ?>
+                </div>
+                <div class="meta">
+                    <?= date($post->updated_at); ?>
                 </div>
                 <p>
-                    <?= htmlspecialchars($post->body);?>
+                    <?= htmlspecialchars($post->description);?>
                 </p>
                 <div class="post-controls">
                     <a href="posts/<?= $post->id?>">
