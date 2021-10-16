@@ -6,10 +6,10 @@ use App\Core\Model;
 use PDO;
 
 class Post extends Model{
-    protected const TABLE = 'post';
+    protected const TABLE = 'posts';
 
     public function getAllPosts() {
-        $sql = "SELECT * FROM ".self::TABLE;
+        $sql = "SELECT posts.id, posts.title, posts.description, posts.status, posts.updated_at, posts.user_id, users.username FROM ".self::TABLE." INNER JOIN users ON ".self::TABLE.".user_id=users.id WHERE status=1 ORDER BY posts.updated_at DESC";
 
         $stmt = $this->db->run($sql);
 
@@ -18,7 +18,7 @@ class Post extends Model{
 
     public function getPost($postData) {
         $sql = sprintf(
-            "SELECT * FROM ".self::TABLE." WHERE %s=%s",
+            "SELECT posts.id, posts.title, posts.description, posts.status, posts.updated_at, posts.user_id, users.username FROM ".self::TABLE." INNER JOIN users ON ".self::TABLE.".user_id=users.id WHERE ".self::TABLE.".%s=%s",
             implode('', array_keys($postData)),
             ':'.implode('', array_keys($postData))
         );
@@ -34,6 +34,12 @@ class Post extends Model{
             implode(', ', array_keys($postData)),
             ':'.implode(', :', array_keys($postData))
         );
+
+        $this->db->run($sql, $postData);
+    }
+
+    public function updatePost(array $postData){
+        $sql = "UPDATE ".self::TABLE." SET title=:title, description=:description, status=:status WHERE id=:id";
 
         $this->db->run($sql, $postData);
     }
