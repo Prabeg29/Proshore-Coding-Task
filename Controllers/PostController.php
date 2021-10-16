@@ -10,7 +10,10 @@ use App\Models\Post;
 class PostController extends Controller {
     protected Post $post;
 
-    protected array $viewData = [];
+    protected array $viewData = [
+        'input' => [],
+        'error' => [],
+    ];
 
     public function __construct()
     {
@@ -18,7 +21,7 @@ class PostController extends Controller {
     }
 
     public function index() {
-        $this->view('post-form');
+        $this->view('post-add');
     }
 
     public function store(Request $request) {
@@ -35,19 +38,49 @@ class PostController extends Controller {
         if(empty(array_values($this->viewData['error']))){
             $this->post->createPost([
                 'title' => $postData['title'],
-                'body' => $postData['body']
+                'description' => $postData['description'],
+                'status' => $postData['status'] === 'true' ? true : false,
+                'user_id' => $postData['user_id']
             ]);
     
             Response::redirect('/');
         }
 
-        $this->view('post-form', $this->viewData);
+        $this->view('post-add', $this->viewData);
     }
 
     public function show(Request $request, $id) {
         $post = $this->post->getPost(['id' => $id]);
-        
+
         $this->view('post', $post);
+    }
+
+    public function showEditForm(Request $request, $id) {
+        $this->viewData['input'] = (array) $this->post->getPost(['id' => $id]);
+        $this->view('post-edit', $this->viewData);
+    }
+
+    public function update(Request $request, $id) {
+        $postData = $request->getInput();
+
+        $this->viewData['input'] = $postData;
+
+        foreach($this->viewData['input'] as $key => $value){
+            if(empty($value)){
+                $this->viewData['error'][$key] = "Please enter $key.";
+            }
+        }
+
+        if(empty(array_values($this->viewData['error']))){
+            $this->post->updatePost([
+                'title' => $postData['title'],
+                'description' => $postData['description'],
+                'status' => $postData['status'] === 'true' ? true : false,
+                'id' => $postData['id']
+            ]);
+            Response::redirect("/posts/{$postData['id']}");
+        }
+        $this->view('post-add', $this->viewData);
     }
 
     public function destroy(Request $request, $id){
