@@ -1,11 +1,11 @@
 <?php require 'Views/templates/head.php'?>
-
 <?php require('Views/templates/title.php');?>
+
 <p>This paragraph summarises what the blog is about.</p>
 <div>
     <h2>Recent Articles</h2>
     <div class="post-list">
-        <?php foreach($data as $post): ?>
+        <?php foreach($data['post'] as $post): ?>
             <div class="post-synopsis">
                 <h3>
                     <?= htmlspecialchars($post->title); ?>
@@ -26,6 +26,13 @@
                 </div>
             </div>
         <?php endforeach;?>
+    </div>
+    <div>
+        <?php
+            for($page = 1; $page <= $data['pages']; $page++) {
+                echo '<a href="/?page='.$page.'">'.' '.$page.' '.'</a>';
+            }
+        ?>
     </div>
 </div>
 <?php require 'Views/templates/foot.php'?>
