@@ -11,7 +11,8 @@ class PagesController extends Controller{
         $postModel = new Post();
 
         $post = $postModel->getAllPosts();
+        $pages = $postModel->getPaginationNumber();
 
-        $this->view('index', $post);
+        $this->view('index', ['post' => $post, 'pages' => $pages]);
     }
 }
