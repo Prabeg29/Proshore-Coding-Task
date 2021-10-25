@@ -9,4 +9,4 @@
     <title>Blog</title>
 </head>
 <body>  
-    <?php require '../src/Views/templates/title.php'?>
+    <?php require '../src/Views/templates/top-menu.php'?>

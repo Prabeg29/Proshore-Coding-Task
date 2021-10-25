@@ -1,4 +1,4 @@
-<?php require '../src/Views/templates/head.php'?>
+<?php require_once '../src/Views/templates/header.php'?>
 
 <div class="container">
     <h2>My Worklogs</h2>
@@ -40,4 +40,4 @@
     </table>
 </div>
 
-<?php require '../src/Views/templates/foot.php'?>
+<?php require '../src/Views/templates/footer.php'?>

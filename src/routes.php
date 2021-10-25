@@ -24,3 +24,5 @@ Router::put("/posts-edit/$id", [PostController::class, 'update']);
 Router::delete("/posts/$id", [PostController::class, 'destroy']);
 
 Router::get('/my-posts', [PostController::class, 'userPost']);
+
+Router::post('/file-upload', [FileController::class, 'fileUpload']);

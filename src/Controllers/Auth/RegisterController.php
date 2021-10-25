@@ -16,7 +16,7 @@ class RegisterController extends Controller{
     }
 
     public function index() {
-        $this->view('register');
+        $this->view('Auth/register');
     }
 
     public function store(Request $request) {
@@ -48,6 +48,6 @@ class RegisterController extends Controller{
             Response::redirect('/users/login');
         }
 
-        $this->view('register', $this->viewData);
+        $this->view('Auth/register', $this->viewData);
     }
 }

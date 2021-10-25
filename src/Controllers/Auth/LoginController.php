@@ -17,7 +17,7 @@ class LoginController extends Controller{
     }
 
     public function index() {
-        $this->view('login');
+        $this->view('Auth/login');
     }
 
     public function login(Request $request) {
@@ -32,7 +32,7 @@ class LoginController extends Controller{
 
         $this->viewData['error'] = "Invalid Credentials. Please try again";
 
-        $this->view('login', $this->viewData);
+        $this->view('Auth/login', $this->viewData);
     }
 
     protected function saveUserSession($user) {

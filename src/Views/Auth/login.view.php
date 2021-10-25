@@ -1,4 +1,4 @@
-<?php require '../src/Views/templates/head.php'?>
+<?php require_once '../src/Views/templates/header.php'?>
 
 <div class="container">
     <h1>Login Page</h1>
@@ -32,4 +32,4 @@
         <p>Not Registered Yet? <a href="/users/register">Register Here</a></p>
     </div>
 </div>
-<?php require '../src/Views/templates/foot.php'?>
+<?php require_once '../src/Views/templates/footer.php'?>

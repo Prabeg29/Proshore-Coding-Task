@@ -1,4 +1,4 @@
-<?php require '../src/Views/templates/head.php'?>
+<?php require_once '../src/Views/templates/header.php'?>
 
 <div class="container">
     <h1>Edit Post</h1>
@@ -44,4 +44,4 @@
     </form>
 </div>
 
-<?php require '../src/Views/templates/foot.php'?>
+<?php require_once '../src/Views/templates/footer.php'?>

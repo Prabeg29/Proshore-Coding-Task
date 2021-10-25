@@ -20,7 +20,7 @@ class PostController extends Controller {
     public function index() {
         AuthMiddleware::auth(); 
 
-        $this->view('post-add');
+        $this->view('Posts/post-add');
     }
 
     public function store(Request $request) {
@@ -44,26 +44,26 @@ class PostController extends Controller {
             Response::redirect('/');
         }
 
-        $this->view('post-add', $this->viewData);
+        $this->view('Posts/post-add', $this->viewData);
     }
 
     public function userPost(Request $request, $id) {
         AuthMiddleware::auth(); 
         $userPost = (array) $this->post->getUserPost(['id'=> Session::get('user_id')]);
-        $this->view('my-posts', $userPost);
+        $this->view('Posts/my-posts', $userPost);
     }
 
     public function show(Request $request, $id) {
         $this->viewData['input'] = (array) $this->post->getPost(['id' => $id]);
 
-        $this->view('post', $this->viewData);
+        $this->view('Posts/post', $this->viewData);
     }
 
     public function showEditForm(Request $request, $id) {
         AuthMiddleware::auth(); 
 
         $this->viewData['input'] = (array) $this->post->getPost(['id' => $id]);
-        $this->view('post-edit', $this->viewData);
+        $this->view('Posts/post-edit', $this->viewData);
     }
 
     public function update(Request $request, $id) {
@@ -85,7 +85,7 @@ class PostController extends Controller {
             ]);
             Response::redirect("/posts/{$this->viewData['input']['id']}");
         }
-        $this->view('post-add', $this->viewData);
+        $this->view('Posts/post-add', $this->viewData);
     }
 
     public function destroy(Request $request, $id){

@@ -1,4 +1,4 @@
-<?php require '../src/Views/templates/head.php'?>
+<?php require_once '../src/Views/templates/header.php'?>
 
 <div class="container">
     <h1>Add Post</h1>
@@ -35,6 +35,16 @@
             </div>
         </div>
         <div class="mb-3">
+            <form action="/file-upload" method="post" enctype="multipart/form-data">
+                <label for="thumbnail" class="form-label">Thumbnail*: </label>
+                <input type="file" name="fileToUpload">
+                <input type="submit" value="Upload Image" name="submit">
+            </form>
+            <div style="color: red;">
+                <?= $viewData['error']['description']?>
+            </div>
+        </div>
+        <div class="mb-3">
             <label for="status" class="form-label">Status*: </label>
             <select class="form-select" name="status">
                 <option selected value="false">Draft</option>
@@ -46,4 +56,4 @@
     </form>
 </div>
 
-<?php require '../src/Views/templates/foot.php'?>
+<?php require '../src/Views/templates/footer.php'?>

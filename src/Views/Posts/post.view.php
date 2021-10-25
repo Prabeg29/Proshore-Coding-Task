@@ -1,4 +1,4 @@
-<?php require '../src/Views/templates/head.php'?>
+<?php require_once '../src/Views/templates/header.php'?>
 
 <!-- Page content-->
 <div class="container mt-5">
@@ -23,4 +23,4 @@
         </div>       
     </div>
 </div>
-<?php require '../src/Views/templates/foot.php'?>
+<?php require '../src/Views/templates/footer.php'?>
