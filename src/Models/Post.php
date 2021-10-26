@@ -83,7 +83,8 @@ class Post extends Model{
         $sql = sprintf(
             "SELECT posts.id, 
                     posts.title, 
-                    posts.description, 
+                    posts.description,
+                    posts.imagePath, 
                     posts.status, 
                     posts.updated_at, 
                     posts.user_id,

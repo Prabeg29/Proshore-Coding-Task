@@ -32,12 +32,15 @@ class PostController extends Controller {
             }
         }
 
+        $this->viewData['input']['filePath'] = $this->fileUpload();
+
         if(empty(array_values($this->viewData['error']))){
             $this->post->createPost([
                 'title' => $this->viewData['input']['title'],
                 'slug' => $this->viewData['input']['slug'],
                 'description' => $this->viewData['input']['description'],
-                'status' => $this->viewData['input']['status'] === 'true',
+                'imagePath' => $this->viewData['input']['filePath'],
+                'status' => $this->viewData['input']['status'] === 'true' ? 1:0,
                 'user_id' => $this->viewData['input']['user_id']
             ]);
     
@@ -74,18 +77,21 @@ class PostController extends Controller {
                 $this->viewData['error'][$key] = "Please enter $key.";
             }
         }
+        
+        $this->viewData['input']['filePath'] = $this->fileUpload();
 
         if(empty(array_values($this->viewData['error']))){
             $this->post->updatePost([
                 'title' => $this->viewData['input']['title'],
                 'slug' => $this->viewData['input']['slug'],
                 'description' => $this->viewData['input']['description'],
-                'status' => $this->viewData['input']['status'] === 'true' ? true : false,
+                'imagePath' => $this->viewData['input']['filePath'],
+                'status' => $this->viewData['input']['status'] === 'true' ? 1 : 0,
                 'id' => $this->viewData['input']['id']
             ]);
             Response::redirect("/posts/{$this->viewData['input']['id']}");
         }
-        $this->view('Posts/post-add', $this->viewData);
+        $this->view('Posts/post-edit', $this->viewData);
     }
 
     public function destroy(Request $request, $id){
@@ -94,5 +100,46 @@ class PostController extends Controller {
             Response::redirect('/my-posts');
         }
         echo 'Something went wrong';
+    }
+
+    protected function fileUpload() {
+        $filePath ="../public/storage/".basename($_FILES["fileToUpload"]["name"]);
+        $fileExtension = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
+        
+        // Check if image file is a actual image or fake image
+        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+        if(!$check) {
+            $this->viewData['error']['image'] = "File is not an image.";
+        }
+
+        // Check if file already exists
+        if (file_exists($filePath)) {
+            $this->viewData['error']['image'] = "Sorry, file already exists.";
+        }
+  
+        // Check file size
+        if ($_FILES["fileToUpload"]["size"] > 500000) {
+            $this->viewData['error']['image'] = "Sorry, your file is too large.";
+        }
+  
+        // Allow certain file formats
+        if($fileExtension !== "jpg" 
+            && 
+            $fileExtension !== "png" 
+            && 
+            $fileExtension !== "jpeg"
+            &&
+            $fileExtension !== "gif" ) {
+                $this->viewData['error']['image'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        }
+  
+        if (!move_uploaded_file(
+            $_FILES["fileToUpload"]["tmp_name"],
+            $filePath)
+        ) {
+            $this->viewData['error']['image'] =  "Sorry, there was an error uploading your file.";
+        }
+
+        return $filePath;
     }
 }

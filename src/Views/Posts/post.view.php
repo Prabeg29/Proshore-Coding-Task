@@ -14,7 +14,7 @@
                         <div class="text-muted fst-italic mb-2">Posted on <?= htmlspecialchars(date('Y-m-d, h:i A', strtotime($viewData['input']['updated_at'])))?> by <?= htmlspecialchars($viewData['input']['username'])?></div>
                 </header>
                 <!-- Preview image figure-->
-                <figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>
+                <figure class="mb-4"><img class="img-fluid rounded" src=<?= $viewData['input']['imagePath']?>></figure>
                 <!-- Post content-->
                 <section class="mb-5">
                     <p class="fs-5 mb-4"><?= htmlspecialchars($viewData['input']['description']) ?></p>

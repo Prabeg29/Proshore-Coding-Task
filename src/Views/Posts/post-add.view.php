@@ -2,7 +2,7 @@
 
 <div class="container">
     <h1>Add Post</h1>
-    <form action="/posts" method="post">
+    <form action="/posts" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="title" class="form-label">Title*: </label>
             <input 
@@ -35,13 +35,10 @@
             </div>
         </div>
         <div class="mb-3">
-            <form action="/file-upload" method="post" enctype="multipart/form-data">
-                <label for="thumbnail" class="form-label">Thumbnail*: </label>
-                <input type="file" name="fileToUpload">
-                <input type="submit" value="Upload Image" name="submit">
-            </form>
+            <label for="thumbnail" class="form-label">Thumbnail*: </label>
+            <input type="file" name="fileToUpload">
             <div style="color: red;">
-                <?= $viewData['error']['description']?>
+                <?= $viewData['error']['image']?>
             </div>
         </div>
         <div class="mb-3">

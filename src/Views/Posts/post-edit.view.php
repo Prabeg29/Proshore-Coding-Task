@@ -26,6 +26,13 @@
             <textarea class="form-control" name="description" rows="3"><?=  htmlspecialchars($viewData['input']['description'])?></textarea>
         </div>
         <div class="mb-3">
+            <label for="thumbnail" class="form-label">Thumbnail*: </label>
+            <input type="file" name="fileToUpload">
+            <div style="color: red;">
+                <?= $viewData['error']['image']?>
+            </div>
+        </div>
+        <div class="mb-3">
             <label for="email" class="form-label">Status*: </label>
             <select class="form-select" aria-label="Default select example" name="status">
                 <option value="false">Draft</option>

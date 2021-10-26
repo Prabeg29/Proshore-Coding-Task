@@ -7,7 +7,6 @@ use App\Controllers\Auth\LoginController;
 use App\Controllers\Auth\LogoutController;
 use App\Controllers\PostController;
 
-
 Router::get('/', [PagesController::class, 'index']);
 
 Router::get('/users/register', [RegisterController::class, 'index']);
@@ -24,5 +23,3 @@ Router::put("/posts-edit/$id", [PostController::class, 'update']);
 Router::delete("/posts/$id", [PostController::class, 'destroy']);
 
 Router::get('/my-posts', [PostController::class, 'userPost']);
-
-Router::post('/file-upload', [FileController::class, 'fileUpload']);
