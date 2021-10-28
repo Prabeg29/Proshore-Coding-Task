@@ -9,11 +9,12 @@ cd /path/to/project/dir
 ```sh
 composer install
 ```
-4. Run migrations
+4. Copy the .env.example as .env file and add your db credentials
+5. Run migrations
 ```php
 php src/Migrations/Migration.php
 ```
-5. Head to public dir
-6. Start php built-in server
+6. Head to public dir
+7. Start php built-in server
 ```php
 php -S localhost:8080
