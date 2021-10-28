@@ -1,1 +1,1 @@
-# Blog using OOP PHP
+# Blog using OOP PHP with MVC architecture
