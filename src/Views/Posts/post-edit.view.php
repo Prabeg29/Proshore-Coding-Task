@@ -2,7 +2,7 @@
 
 <div class="container">
     <h1>Edit Post</h1>
-    <form action="/posts-edit/<?=$viewData['input']['id']?> " method="post">
+    <form action="/posts-edit/<?=$viewData['input']['id']?> " method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="title" class="form-label">Title*: </label>
             <input 
@@ -27,7 +27,7 @@
         </div>
         <div class="mb-3">
             <label for="thumbnail" class="form-label">Thumbnail*: </label>
-            <input type="file" name="fileToUpload">
+            <input type="file" name="fileToUpload" value="<?= $viewData['input']['imagePath']?>">
             <div style="color: red;">
                 <?= $viewData['error']['image']?>
             </div>

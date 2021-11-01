@@ -40,7 +40,7 @@ class PostController extends Controller {
                 'slug' => $this->viewData['input']['slug'],
                 'description' => $this->viewData['input']['description'],
                 'imagePath' => $this->viewData['input']['filePath'],
-                'status' => $this->viewData['input']['status'] === 'true' ? 1:0,
+                'status' => $this->viewData['input']['status'] === 'true' ? 1 : 0,
                 'user_id' => $this->viewData['input']['user_id']
             ]);
     
@@ -103,34 +103,20 @@ class PostController extends Controller {
     }
 
     protected function fileUpload() {
-        $filePath ="../public/storage/".basename($_FILES["fileToUpload"]["name"]);
-        $fileExtension = strtolower(pathinfo($filePath, PATHINFO_EXTENSION));
-        
-        // Check if image file is a actual image or fake image
-        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-        if(!$check) {
-            $this->viewData['error']['image'] = "File is not an image.";
-        }
+        $allowedExtensions = array('.jpg', '.png', '.jpeg', '.gif');
 
-        // Check if file already exists
-        if (file_exists($filePath)) {
-            $this->viewData['error']['image'] = "Sorry, file already exists.";
-        }
+        $fileExtension = pathinfo($_FILES["fileToUpload"]["name"])['extension'];
+        $filePath = "../public/storage/".time().'_'.basename($_FILES["fileToUpload"]["name"]);
+
   
         // Check file size
-        if ($_FILES["fileToUpload"]["size"] > 500000) {
+        if ($_FILES["fileToUpload"]["size"] > 5000000) {
             $this->viewData['error']['image'] = "Sorry, your file is too large.";
         }
   
         // Allow certain file formats
-        if($fileExtension !== "jpg" 
-            && 
-            $fileExtension !== "png" 
-            && 
-            $fileExtension !== "jpeg"
-            &&
-            $fileExtension !== "gif" ) {
-                $this->viewData['error']['image'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        if(in_array($fileExtension, $allowedExtensions)) {
+            $this->viewData['error']['image'] = "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
         }
   
         if (!move_uploaded_file(

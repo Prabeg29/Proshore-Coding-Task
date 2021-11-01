@@ -43,6 +43,7 @@ class Post extends Model{
             posts.status, 
             posts.updated_at, 
             posts.user_id, 
+            posts.imagePath,
             users.username 
             FROM ".self::TABLE.
             " INNER JOIN users
@@ -114,7 +115,7 @@ class Post extends Model{
     }
 
     public function updatePost(array $postData){
-        $sql = "UPDATE ".self::TABLE." SET title=:title, slug=:slug, description=:description, status=:status WHERE id=:id";
+        $sql = "UPDATE ".self::TABLE." SET title=:title, slug=:slug, description=:description, imagePath=:imagePath, status=:status WHERE id=:id";
 
         $this->db->run($sql, $postData);
     }

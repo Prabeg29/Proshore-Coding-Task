@@ -21,7 +21,8 @@
                         </small>
                     </span>
                 </p>
-                <p class="card-text">
+                <img src=<?= $post->imagePath?> class="img-thumbnail" alt="...">
+                <p class="card-text text-truncate">
                     <?= htmlspecialchars($post->description);?>
                 </p>
                 <div class="post-controls">

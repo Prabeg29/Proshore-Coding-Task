@@ -1,7 +1,7 @@
 <?php require_once '../src/Views/templates/header.php'?>
 
 <div class="container">
-    <h2>My Worklogs</h2>
+    <h2>My Posts</h2>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -31,7 +31,7 @@
                 <td>
                     <form action="/posts/<?= $post->id?>" method="POST">
                         <input type="hidden" name="_method" value="DELETE">
-                        <button type="submit" class="btn btn-secondary">Delete</button>
+                        <button type="submit" class="btn btn-secondary" onclick="return confirm('Are you sure you want to delete this post?');">Delete</button>
                     </form>
                 </td>
             </tr>
